@@ -55,6 +55,8 @@ int main()
 			cout << target << "는 x[" << idx << "]에 있습니다." << endl;
 		else
 			cout << "자료중에 " << target << "은 없습니다." << endl;
+		count++;
+		cout << "이진검색 if 수행 횟수: " << count << endl;
 
 		ScannerHeader();
 		count = 0;
@@ -65,7 +67,6 @@ int main()
 			count++;
 			if (target == data[i])
 				break;
-
 		}
 
 		if (i == SIZE)
@@ -106,7 +107,10 @@ void ScannerBody(int idx, std::vector<int> v)
 	{
 		cout << "  |   ";
 		for (int i = 0; i < idx; i++)
-			cout << "    ";
+		{
+			cout.width(4);
+			cout << std::right << " ";
+		}
 		cout << "*" << endl;
 		cout.width(2);
 		cout << std::right << idx << "|";
@@ -123,16 +127,52 @@ void ScannerBody(int idx, int start, int end, std::vector<int> v)
 {
 	using namespace std;
 
-	cout << "  |   ";
-	for (int i = 0; i < start; i++)
-		cout << "   ";
-	cout << "<-";
+	cout << "  |";
+	for (int i = 0; i <= start; i++)
+	{
+		if (i == start && start != idx)
+		{
+			cout.width(4);
+			cout << std::right << "<-";
+		}
+		else if (i == idx)
+		{
+			cout.width(4);
+			cout << std::right << "+";
+		}
+		else
+		{
+			cout.width(4);
+			cout << std::right << " ";
+		}
+	}
 	for (int i = start + 1; i <= idx; i++)
-		cout << "   ";
-	cout << "+";
+	{
+		if (i == idx)
+		{
+			cout.width(4);
+			cout << std::right << "+";
+		}
+		else
+		{
+			cout.width(4);
+			cout << std::right << " ";
+		}
+	}
 	for (int i = idx + 1; i <= end; i++)
-		cout << "   ";
-	cout << "->" << endl;
+	{
+		if (i == end)
+		{
+			cout.width(4);
+			cout << std::right << "->";
+		}
+		else
+		{
+			cout.width(4);
+			cout << std::right << " ";
+		}
+	}
+	cout << endl;
 	cout.width(2);
 	cout << std::right << idx << "|";
 	for (int i = 0; i < SIZE; i++)
