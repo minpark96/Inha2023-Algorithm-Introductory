@@ -1,98 +1,110 @@
 #include <iostream>
+#include <string>
 #include "stack.h"
 
-int Initialize(IntStack& s, int max)
+Stack::Stack()
 {
-	s.ptr = 0;
-	s.stk = new(std::nothrow) int[max];
-	if (!s.stk)
+	ptr = 0;
+	stk = 0;
+	max = 0;
+}
+
+Stack::~Stack()
+{
+}
+
+bool Stack::Initialize(int max)
+{
+	ptr = 0;
+	stk = new(std::nothrow) std::string[max];
+	if (!stk)
 	{ 
-		s.max = 0;
-		return -1;
+		this->max = 0;
+		return 0;
 	}
-	s.max = max;
-	return 0;
+	this->max = max;
+	return 1;
 }
 
-int Push(IntStack& s, int x)
+bool Stack::Push(std::string x)
 {
-	if (IsFull(s))
-		return -1;
-	s.stk[Size(s)] = x;
-	s.ptr++;
-	return 0;
+	if (IsFull())
+		return 0;
+	stk[Size()] = x;
+	ptr++;
+	return 1;
 }
 
-int Pop(IntStack& s, int& x)
+bool Stack::Pop(std::string& x)
 {
-	if (IsEmpty(s))
-		return -1;
-	x = s.stk[Size(s) - 1];
-	s.ptr--;
-	return 0;
+	if (IsEmpty())
+		return 0;
+	x = stk[Size() - 1];
+	ptr--;
+	return 1;
 }
 
-int Peek(const IntStack& s, int& x)
+bool Stack::Peek(std::string& x) const
 {
-	if (IsEmpty(s))
-		return -1;
-	x = s.stk[Size(s) - 1];
-	return 0;
+	if (IsEmpty())
+		return 0;
+	x = stk[Size() - 1];
+	return 1;
 }
 
-void Clear(IntStack& s)
+void Stack::Clear()
 {
-	s.ptr = 0;
+	ptr = 0;
 }
 
-int Capacity(const IntStack& s)
+int Stack::Capacity() const
 {
-	return s.max;
+	return max;
 }
 
-int Size(const IntStack& s)
+int Stack::Size() const
 {
-	return s.ptr;
+	return ptr;
 }
 
-int IsEmpty(const IntStack& s)
+bool Stack::IsEmpty() const
 {
-	return s.ptr == 0;
+	return ptr == 0;
 }
 
-int IsFull(const IntStack& s)
+bool Stack::IsFull() const
 {
-	return s.ptr == s.max;
+	return ptr == max;
 }
 
-int Search(const IntStack& s, int x)
+bool Stack::Search(std::string x) const
 {
-	if (IsEmpty(s))
-		return -1;
-	for (int i = 0; i < Size(s); i++)
+	if (IsEmpty())
+		return 0;
+	for (int i = 0; i < Size(); i++)
 	{
-		if (s.stk[i] == x)
-			return 0;
+		if (stk[i] == x)
+			return 1;
 	}
-	return -1;
+	return 0;
 }
 
-void Print(const IntStack& s)
+void Stack::Print() const
 {
 	using namespace std;
-	if (IsEmpty(s))
+	if (IsEmpty())
 	{
 		cout << "스택에 데이터가 없습니다." << endl;
 		return;
 	}
-	for (int i = 0; i < Size(s); i++)
+	for (int i = 0; i < Size(); i++)
 	{
-		cout << s.stk[i] << ' ';
+		cout << stk[i] << ' ';
 	}
 	cout << endl;
 }
 
-void Terminate(IntStack& s)
+void Stack::Terminate()
 {
-	delete s.stk;
+	delete[] stk;
 }

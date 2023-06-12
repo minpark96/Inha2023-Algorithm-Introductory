@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "queue.h"
 
 Queue::Queue()
@@ -14,22 +15,22 @@ Queue::~Queue()
 {
 }
 
-int Queue::Initialize(int max)
+bool Queue::Initialize(int max)
 {
 	this->max = max;
-	que = new int[max];
+	que = new(std::nothrow) std::string[max];
 	if (!que)
 	{
 		this->max = 0;
-		return -1;
+		return 0;
 	}
-	return 0;
+	return 1;
 }
 
-int Queue::Enque(int x)
+bool Queue::Enque(std::string x)
 {
 	if (IsFull())
-		return -1;
+		return 0;
 	if (IsEmpty())
 	{
 		que[rear] = x;
@@ -50,13 +51,13 @@ int Queue::Enque(int x)
 			num++;
 		}
 	}
-	return 0;
+	return 1;
 }
 
-int Queue::Deque(int& x)
+bool Queue::Deque(std::string& x)
 {
 	if (IsEmpty())
-		return -1;
+		return 0;
 	if (front == rear)
 	{
 		x = que[front];
@@ -77,15 +78,15 @@ int Queue::Deque(int& x)
 			num--;
 		}
 	}
-	return 0;
+	return 1;
 }
 
-int Queue::Peek(int& x) const
+bool Queue::Peek(std::string& x) const
 {
 	if (IsEmpty())
-		return -1;
+		return 0;
 	x = que[front];
-	return 0;
+	return 1;
 }
 
 void Queue::Clear()
@@ -105,31 +106,31 @@ int Queue::Size() const
 	return num;
 }
 
-int Queue::IsEmpty() const
+bool Queue::IsEmpty() const
 {
 	return num == 0;
 }
 
-int Queue::IsFull() const
+bool Queue::IsFull() const
 {
 	return num == max;
 }
 
-int Queue::Search(int x) const
+bool Queue::Search(std::string x) const
 {
 	if (IsEmpty())
-		return -1;
+		return 0;
 	if (rear < front)
 	{
 		for (int i = front; i < Capacity(); i++)
 		{
 			if (que[i] == x)
-				return 0;
+				return 1;
 		}
 		for (int i = 0; i < rear + 1; i++)
 		{
 			if (que[i] == x)
-				return 0;
+				return 1;
 		}
 	}
 	else
@@ -137,10 +138,10 @@ int Queue::Search(int x) const
 		for (int i = front; i < rear + 1; i++)
 		{
 			if (que[i] == x)
-				return 0;
+				return 1;
 		}
 	}
-	return -1;
+	return 0;
 }
 
 void Queue::Print() const
