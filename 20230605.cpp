@@ -108,10 +108,7 @@ void* bsearchx(const void* key, const void* base, size_t nmemb, size_t size, int
 				{
 					comp = compar(key, x + (idx - 1) * size);
 					if (comp == 0)
-					{
 						idx--;
-						continue;
-					}
 					else
 						return x + idx * size;
 				}

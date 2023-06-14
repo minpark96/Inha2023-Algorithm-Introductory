@@ -20,7 +20,8 @@ int main()
 {
 	using namespace std;
 	ifstream inFile;
-	inFile.open("calc.txt");
+	//inFile.open("calc.txt");
+	inFile.open("Calc2.txt");
 	if (!inFile.is_open())
 	{
 		cout << "calc.txt" << " 파일을 열 수 없습니다." << endl;
@@ -59,7 +60,7 @@ int main()
 		if(!quePo.Initialize(max))
 			cout << "\a오류: 스택 초기화에 실패했습니다." << endl;
 
-		char ch;
+		char ch, neg;
 		int idx = 0;
 		string temp;
 		while (true)
@@ -67,8 +68,7 @@ int main()
 			ch = input[idx];
 			if (ch == 0)
 			{
-				Peek(temp, stkOrr);
-				if (temp == "*" || temp == "/" || temp == "+" || temp == "-")
+				while(!stkOrr.IsEmpty())
 					PopAndEnque(temp, stkOrr, quePo);
 				break;
 			}
@@ -76,7 +76,34 @@ int main()
 			if (ch == '*' || ch == '/' || ch == '+' || ch == '-' || ch == '(' || ch == ')')
 			{
 				if (!temp.empty())
+				{
 					Enque(temp, quePo);
+					if (neg != 0)
+					{
+						temp.clear();
+						temp += neg;
+						Enque(temp, quePo);
+						neg = 0;
+					}
+				}
+				else
+				{
+					if (ch == '-')
+					{
+						Peek(temp, stkOrr);
+						if (temp == "(" || temp == "")
+						{
+							temp.clear();
+							temp += to_string(0);
+							Enque(temp, quePo);
+							temp.clear();
+							neg = ch;
+							idx++;
+							continue;
+						}
+						temp.clear();
+					}
+				}
 
 				if (ch == '*' || ch == '/')
 				{
