@@ -1,24 +1,24 @@
 #include <iostream>
 #include <string>
-#include "stack.h"
+#include "int_stack.h"
 
-Stack::Stack()
+IntStack::IntStack()
 {
 	ptr = 0;
 	stk = 0;
 	max = 0;
 }
 
-Stack::~Stack()
+IntStack::~IntStack()
 {
 }
 
-bool Stack::Initialize(int max)
+bool IntStack::Initialize(int max)
 {
 	ptr = 0;
-	stk = new(std::nothrow) std::string[max];
+	stk = new(std::nothrow) int[max];
 	if (!stk)
-	{ 
+	{
 		this->max = 0;
 		return 0;
 	}
@@ -26,7 +26,7 @@ bool Stack::Initialize(int max)
 	return 1;
 }
 
-bool Stack::Push(std::string x)
+bool IntStack::Push(int x)
 {
 	if (IsFull())
 		return 0;
@@ -35,7 +35,7 @@ bool Stack::Push(std::string x)
 	return 1;
 }
 
-bool Stack::Pop(std::string& x)
+bool IntStack::Pop(int& x)
 {
 	if (IsEmpty())
 		return 0;
@@ -44,7 +44,7 @@ bool Stack::Pop(std::string& x)
 	return 1;
 }
 
-bool Stack::Peek(std::string& x) const
+bool IntStack::Peek(int& x) const
 {
 	if (IsEmpty())
 		return 0;
@@ -52,32 +52,32 @@ bool Stack::Peek(std::string& x) const
 	return 1;
 }
 
-void Stack::Clear()
+void IntStack::Clear()
 {
 	ptr = 0;
 }
 
-int Stack::Capacity() const
+int IntStack::Capacity() const
 {
 	return max;
 }
 
-int Stack::Size() const
+int IntStack::Size() const
 {
 	return ptr;
 }
 
-bool Stack::IsEmpty() const
+bool IntStack::IsEmpty() const
 {
 	return ptr == 0;
 }
 
-bool Stack::IsFull() const
+bool IntStack::IsFull() const
 {
 	return ptr == max;
 }
 
-bool Stack::Search(std::string x) const
+bool IntStack::Search(int x) const
 {
 	if (IsEmpty())
 		return 0;
@@ -89,7 +89,7 @@ bool Stack::Search(std::string x) const
 	return 0;
 }
 
-void Stack::Print() const
+void IntStack::Print() const
 {
 	using namespace std;
 	if (IsEmpty())
@@ -104,7 +104,16 @@ void Stack::Print() const
 	cout << endl;
 }
 
-void Stack::Terminate()
+void IntStack::NewPrint(const int x) const
+{
+	using namespace std;
+	if (x > Size() - 1)
+		cout << "[ ]";
+	else
+		cout << "[" << stk[x] << "]";
+}
+
+void IntStack::Terminate()
 {
 	delete[] stk;
 }

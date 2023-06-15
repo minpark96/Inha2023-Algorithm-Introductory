@@ -39,7 +39,7 @@
     <ClCompile Include="20230607.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="stack.cpp">
+    <ClCompile Include="string_stack.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="queue.cpp">
@@ -54,9 +54,18 @@
     <ClCompile Include="20230612.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="20230615.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="int_stack.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="int_stack.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stack.h">
+    <ClInclude Include="string_stack.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="queue.h">

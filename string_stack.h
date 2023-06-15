@@ -1,18 +1,18 @@
 #pragma once
-#ifndef ___Stack
-#define ___Stack
+#ifndef _STRING_STACK
+#define _STRING_STACK
 #include <iostream>
 #include <string>
 
-class Stack
+class StringStack
 {
 private:
 	int max;
 	int ptr;
 	std::string* stk;
 public:
-	Stack();
-	~Stack();
+	StringStack();
+	~StringStack();
 	bool Initialize(int max);
 	bool Push(std::string x);
 	bool Pop(std::string& x);
