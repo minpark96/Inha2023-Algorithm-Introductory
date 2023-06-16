@@ -17,7 +17,6 @@ int main()
 
 	for (int i = height; i > 0; i--)
 		t1.push_back(i);
-	cout << "=========" << endl;
 	Print(pv);
 	Hanoi(height, t1, t2, t3, pv);
 
@@ -30,13 +29,13 @@ void Hanoi(int num, vector<int>& base, vector<int>& pass, vector<int>& dest, vec
 	Hanoi(num - 1, base, dest, pass, pv);
 	dest.push_back(base.back());
 	base.pop_back();
-	cout << "=========" << endl;
 	Print(pv);
 	Hanoi(num - 1, pass, base, dest, pv);
 }
 
 void Print(vector<int>** pv)
 {
+	cout << "=========" << endl;
 	for (int i = height - 1; i > -1; i--)
 	{
 		if ((*pv[0]).size() < i + 1 && (*pv[1]).size() < i + 1 && (*pv[2]).size() < i + 1)
