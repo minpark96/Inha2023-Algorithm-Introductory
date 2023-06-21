@@ -174,7 +174,10 @@
     <ClCompile Include="20230615.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="20230619.cpp" />
+    <ClCompile Include="20230619.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="20230621.cpp" />
     <ClCompile Include="int_stack.cpp" />
     <ClCompile Include="int_stack.h" />
     <ClCompile Include="queue.cpp" />

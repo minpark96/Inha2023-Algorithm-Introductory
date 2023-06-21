@@ -6,7 +6,7 @@ void BubbleSortV1(int* ary, int& len);
 void BubbleSortV2(int* ary, int& len);
 void BubbleSortV3(int* ary, int& len);
 void Swap(int& a, int& b);
-void Print(int* ary, int& len, int& idx, int flag);
+void PrintBubble(int* ary, int& len, int& idx, int flag);
 
 int main()
 {
@@ -69,14 +69,14 @@ void BubbleSortV1(int* ary, int& len)
 			comp++;
 			if (ary[j + 1] < ary[j])
 			{
-				Print(ary, len, j, 1);
+				PrintBubble(ary, len, j, 1);
 				Swap(ary[j], ary[j + 1]);
 				echg++;
 			}
 			else
-				Print(ary, len, j, -1);
+				PrintBubble(ary, len, j, -1);
 		}
-		Print(ary, len, len, 0);
+		PrintBubble(ary, len, len, 0);
 	}
 	std::cout << "V1 비교: " << comp << "회, 교환: " << echg << std::endl;
 }
@@ -95,15 +95,15 @@ void BubbleSortV2(int* ary, int& len)
 			comp++;
 			if (ary[j + 1] < ary[j])
 			{
-				Print(ary, len, j, 1);
+				PrintBubble(ary, len, j, 1);
 				Swap(ary[j], ary[j + 1]);
 				echg++;
 				count++;
 			}
 			else
-				Print(ary, len, j, -1);
+				PrintBubble(ary, len, j, -1);
 		}
-		Print(ary, len, len, 0);
+		PrintBubble(ary, len, len, 0);
 		if (count == 0)
 			break;
 	}
@@ -125,16 +125,16 @@ void BubbleSortV3(int* ary, int& len)
 			comp++;
 			if (ary[j + 1] < ary[j])
 			{
-				Print(ary, len, j, 1);
+				PrintBubble(ary, len, j, 1);
 				Swap(ary[j], ary[j + 1]);
 				echg++;
 				count++;
 				next = j;
 			}
 			else
-				Print(ary, len, j, -1);
+				PrintBubble(ary, len, j, -1);
 		}
-		Print(ary, len, len, 0);
+		PrintBubble(ary, len, len, 0);
 		if (count == 0)
 			break;
 		prev = next;
@@ -149,7 +149,7 @@ void Swap(int& a, int& b)
 	a = temp;
 }
 
-void Print(int* ary, int& len, int& idx, int flag)
+void PrintBubble(int* ary, int& len, int& idx, int flag)
 {
 	using std::cout;
 	using std::endl;
