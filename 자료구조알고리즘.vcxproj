@@ -171,14 +171,19 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="20230615.cpp" />
+    <ClCompile Include="20230615.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="20230619.cpp" />
     <ClCompile Include="int_stack.cpp" />
     <ClCompile Include="int_stack.h" />
     <ClCompile Include="queue.cpp" />
+    <ClCompile Include="stopwatch.cpp" />
     <ClCompile Include="string_stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="queue.h" />
+    <ClInclude Include="stopwatch.h" />
     <ClInclude Include="string_stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
