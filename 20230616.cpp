@@ -29,19 +29,19 @@ void EightQueen(int(&pos)[SIZE], int(&flagR)[SIZE], int(&flagDR)[SIZE * 2 - 1],
 		return;
 	}
 
-	for (int i = 0; i < SIZE; i++)
+	for (int row = 0; row < SIZE; row++)
 	{
-		pos[col] = i;
-		if (flagR[i] == 0 && flagDR[SIZE - 1 - col + i] == 0 
-			&& flagDL[2 * SIZE - 2 - i - col] == 0)
+		if (flagR[row] == 0 && flagDR[SIZE - 1 + row - col] == 0
+			&& flagDL[row + col] == 0)
 		{
-			flagR[i] = 1;
-			flagDR[SIZE - 1 - col + i] = 1;
-			flagDL[2 * SIZE - 2 - i - col] = 1;
+			pos[col] = row;
+			flagR[row] = 1;
+			flagDR[SIZE - 1 + row - col] = 1;
+			flagDL[row + col] = 1;
 			EightQueen(pos, flagR, flagDR, flagDL, col + 1, count);
-			flagR[i] = 0;
-			flagDR[SIZE - 1 - col + i] = 0;
-			flagDL[2 * SIZE - 2 - i - col] = 0;
+			flagR[row] = 0;
+			flagDR[SIZE - 1 + row - col] = 0;
+			flagDL[row + col] = 0;
 		}
 	}
 }
