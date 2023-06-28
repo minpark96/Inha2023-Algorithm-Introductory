@@ -4,8 +4,11 @@
 void SSSort(int* ary, int& len);
 void SISort(int* ary, int& len);
 void ShellSort(int* ary, int& len);
+void SISort(int** pary, int len, int& echg, int& comp);
 void BubbleSort(int* ary, int& len);
 void Swap(int& a, int& b);
+
+using namespace std;
 
 int main()
 {
@@ -33,18 +36,15 @@ int main()
 	{
 		ary2[i] = ary1[i];
 		ary3[i] = ary1[i];
+		ary4[i] = ary1[i];
 	}
 
-
 	BubbleSort(ary1, size);
-
 	SSSort(ary2, size);
-
 	SISort(ary3, size);
-
 	ShellSort(ary4, size);
 
-	delete[] ary1, ary2, ary3;
+	delete[] ary1, ary2, ary3, ary4;
 
 	return 0;
 }
@@ -61,10 +61,8 @@ void BubbleSort(int* ary, int& len)
 	cout << "Bubble Sort" << endl;
 	int echg = 0, comp = 0;
 	int prev = len - 1, next;
-	int pass = 1;
-	for (int i = len - 1; i > 0; i--, pass++)
+	for (int i = len - 1; i > 0; i--)
 	{
-		cout << "패스" << pass << ":" << endl;
 		int count = 0;
 		for (int j = 0; j < prev; j++)
 		{
@@ -81,7 +79,7 @@ void BubbleSort(int* ary, int& len)
 			break;
 		prev = next;
 	}
-	cout << "Bubble Sort - 비교: " << comp << "회, 교환: " << echg << endl;
+	cout << "Bubble Sort - 비교: " << comp << "회, 교환: " << echg << "회" << endl;
 }
 
 void SSSort(int* ary, int& len)
@@ -101,7 +99,7 @@ void SSSort(int* ary, int& len)
 		echg++;
 		Swap(ary[min], ary[i]);
 	}
-	cout << "SSSort V1 - 비교: " << comp << "회, 교환: " << echg << endl;
+	cout << "SSSort - 비교: " << comp << "회, 교환: " << echg << "회" << endl;
 }
 
 void SISort(int* ary, int& len)
@@ -117,7 +115,6 @@ void SISort(int* ary, int& len)
 			comp++;
 			if (temp < ary[j - 1])
 			{
-				echg++;
 				ary[j] = ary[j - 1];
 			}
 			else
@@ -131,6 +128,31 @@ void SISort(int* ary, int& len)
 
 void ShellSort(int* ary, int& len)
 {
+	cout << "ShellSort" << endl;
+	int echg = 0, comp = 0;
 
-	return;
+	int num;
+	for (num = 1; num < len; num = num * 3 + 1)
+		;
+
+	for (; num > 0; num /= 3)
+		for (int i = num; i < len; i++)
+		{
+			int temp = ary[i];
+			int j;
+			for (j = i - num; j >= 0; j -= num)
+			{
+				comp++;
+				if (ary[j] > temp)
+				{
+					ary[j + num] = ary[j];
+				}
+				else
+					break;
+			}
+			echg++;
+			ary[j + num] = temp;
+		}
+
+	cout << "ShellSort - 비교: " << comp << "회, 교환: " << echg << "회" << endl;
 }
