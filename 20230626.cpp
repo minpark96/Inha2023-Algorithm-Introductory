@@ -1,11 +1,10 @@
 #include <iostream>
 #define SIZE 10
 
+void BubbleSort(int* ary, int& len);
 void SSSort(int* ary, int& len);
 void SISort(int* ary, int& len);
 void ShellSort(int* ary, int& len);
-void SISort(int** pary, int len, int& echg, int& comp);
-void BubbleSort(int* ary, int& len);
 void Swap(int& a, int& b);
 
 using namespace std;
