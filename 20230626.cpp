@@ -2,8 +2,8 @@
 #define SIZE 10
 
 void BubbleSort(int* ary, int& len);
-void SSSort(int* ary, int& len);
-void SISort(int* ary, int& len);
+void SimpleSelectionSort(int* ary, int& len);
+void SimpleInsertionSort(int* ary, int& len);
 void ShellSort(int* ary, int& len);
 void Swap(int& a, int& b);
 
@@ -11,9 +11,6 @@ using namespace std;
 
 int main()
 {
-	using std::cout;
-	using std::cin;
-	using std::endl;
 	int* ary1 = new int[SIZE];
 	int* ary2 = new int[SIZE];
 	int* ary3 = new int[SIZE];
@@ -39,8 +36,8 @@ int main()
 	}
 
 	BubbleSort(ary1, size);
-	SSSort(ary2, size);
-	SISort(ary3, size);
+	SimpleSelectionSort(ary2, size);
+	SimpleInsertionSort(ary3, size);
 	ShellSort(ary4, size);
 
 	delete[] ary1, ary2, ary3, ary4;
@@ -81,7 +78,7 @@ void BubbleSort(int* ary, int& len)
 	cout << "Bubble Sort - 비교: " << comp << "회, 교환: " << echg << "회" << endl;
 }
 
-void SSSort(int* ary, int& len)
+void SimpleSelectionSort(int* ary, int& len)
 {
 	cout << "SSSort" << endl;
 	int min;
@@ -101,7 +98,7 @@ void SSSort(int* ary, int& len)
 	cout << "SSSort - 비교: " << comp << "회, 교환: " << echg << "회" << endl;
 }
 
-void SISort(int* ary, int& len)
+void SimpleInsertionSort(int* ary, int& len)
 {
 	cout << "SISort" << endl;
 	int echg = 0, comp = 0;

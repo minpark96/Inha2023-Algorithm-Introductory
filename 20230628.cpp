@@ -2,13 +2,13 @@
 #define SIZE 20
 
 void BubbleSort(int* ary, int& len);
-void SSSort(int* ary, int& len);
-void SISort(int* ary, int& len);
+void SimpleSelectionSort(int* ary, int& len);
+void SimpleInsertionSort(int* ary, int& len);
 void ShellSort(int* ary, int& len);
 void QuickSort(int* ary, int pl, int pr);
 void Swap(int& a, int& b);
 
-int echg, comp;
+int echgQuick, compQuick;
 using namespace std;
 
 int main()
@@ -42,14 +42,14 @@ int main()
 	cout << "Bubble Sort" << endl;
 	BubbleSort(ary1, size);
 	cout << "SSSort" << endl;
-	SSSort(ary2, size);
+	SimpleSelectionSort(ary2, size);
 	cout << "SISort" << endl;
-	SISort(ary3, size);
+	SimpleInsertionSort(ary3, size);
 	cout << "ShellSort" << endl;
 	ShellSort(ary4, size);
 	cout << "QuickSort" << endl;
 	QuickSort(ary5, 0, size - 1);
-	cout << "QuickSort - 비교: " << comp << "회, 교환: " << echg << "회" << endl;
+	cout << "QuickSort - 비교: " << compQuick << "회, 교환: " << echgQuick << "회" << endl;
 
 	delete[] ary1, ary2, ary3, ary4, ary5;
 
@@ -88,7 +88,7 @@ void BubbleSort(int* ary, int& len)
 	cout << "Bubble Sort - 비교: " << comp << "회, 교환: " << echg << "회" << endl;
 }
 
-void SSSort(int* ary, int& len)
+void SimpleSelectionSort(int* ary, int& len)
 {
 	int min;
 	int echg = 0, comp = 0;
@@ -107,7 +107,7 @@ void SSSort(int* ary, int& len)
 	cout << "SSSort - 비교: " << comp << "회, 교환: " << echg << "회" << endl;
 }
 
-void SISort(int* ary, int& len)
+void SimpleInsertionSort(int* ary, int& len)
 {
 	int echg = 0, comp = 0;
 	for (int i = 1; i < len; i++)
@@ -170,21 +170,21 @@ void QuickSort(int* ary, int pl, int pr)
 	{
 		while (ary[pl] < x)
 		{
-			comp++;
+			compQuick++;
 			pl++;
 		}
-		comp++;
+		compQuick++;
 
 		while(ary[pr] > x)
 		{
-			comp++;
+			compQuick++;
 			pr--;
 		}
-		comp++;
+		compQuick++;
 
 		if (pl <= pr)
 		{
-			echg++;
+			echgQuick++;
 			Swap(ary[pl], ary[pr]);
 			pl++;
 			pr--;

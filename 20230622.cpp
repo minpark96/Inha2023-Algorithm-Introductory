@@ -1,7 +1,7 @@
 #include <iostream>
 #define SIZE 10
 
-void SISort(int* ary, int& len);
+void SimpleInsertionSort(int* ary, int& len);
 void PrintNum(int* ary, int& len);
 void PrintPos(int* ary, int& len, int& tar, int& sel);
 
@@ -23,14 +23,14 @@ int main()
 		size++;
 	}
 
-	SISort(ary, size);
+	SimpleInsertionSort(ary, size);
 
 	delete[] ary;
 
 	return 0;
 }
 
-void SISort(int* ary, int& len)
+void SimpleInsertionSort(int* ary, int& len)
 {
 	cout << "SISort" << endl;
 	int echg = 0, comp = 0;
