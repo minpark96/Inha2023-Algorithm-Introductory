@@ -204,14 +204,22 @@
     <ClCompile Include="20230707.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="20230710.cpp" />
+    <ClCompile Include="20230710.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="20230712.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="20230713.cpp" />
     <ClCompile Include="int_stack.cpp" />
     <ClCompile Include="int_stack.h" />
+    <ClCompile Include="linkedlist.cpp" />
     <ClCompile Include="queue.cpp" />
     <ClCompile Include="stopwatch.cpp" />
     <ClCompile Include="string_stack.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="linkedlist.h" />
     <ClInclude Include="queue.h" />
     <ClInclude Include="stopwatch.h" />
     <ClInclude Include="string_stack.h" />
