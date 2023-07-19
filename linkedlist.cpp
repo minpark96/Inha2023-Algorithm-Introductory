@@ -48,8 +48,8 @@ void LinkedList::InsertFront(int& no, string& name)
 	{
 		curr->next = head;
 		curr->prev = head->prev;
-		head->prev = curr;
 		head->prev->next = curr;
+		head->prev = curr;
 		head = curr;
 	}
 
