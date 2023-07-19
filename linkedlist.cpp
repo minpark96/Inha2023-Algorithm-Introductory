@@ -1,30 +1,23 @@
 #include "linkedlist.h"
 
 LinkedList::LinkedList()
+	: head(nullptr)
+	, curr(nullptr)
+	, size(0)
 {
-	head = NULL;
-	curr = NULL;
-	tail = NULL;
-	size = 0;
 }
 
 LinkedList::~LinkedList()
 {
-	if (size == 0)
+	Node* tmp;
+	tmp = head;
+	curr = head;
+	while (size > 0)
 	{
-
-	}
-	else
-	{
-		Node* next;
-		next = head;
-		curr = head;
-		while (curr != NULL)
-		{
-			next = curr->next;
-			delete curr;
-			curr = next;
-		}
+		tmp = curr->next;
+		delete curr;
+		curr = tmp;
+		size--;
 	}
 }
 
@@ -41,80 +34,101 @@ int LinkedList::Size()
 	return size;
 }
 
-void LinkedList::InsertRear(int& no, string& name)
+void LinkedList::InsertFront(int& no, string& name)
 {
 	curr = new Node{ no, name };
-	curr->next = NULL;
 
 	if (size == 0)
 	{
 		head = curr;
+		curr->next = head;
+		curr->prev = head;
 	}
 	else
 	{
-		tail->next = curr;
+		curr->next = head;
+		curr->prev = head->prev;
+		head->prev = curr;
+		head->prev->next = curr;
+		head = curr;
 	}
 
-	tail = curr;
+	size++;
+}
+
+void LinkedList::InsertRear(int& no, string& name)
+{
+	curr = new Node{ no, name };
+
+	if (size == 0)
+	{
+		head = curr;
+		curr->next = head;
+		curr->prev = head;
+	}
+	else
+	{
+		curr->next = head;
+		curr->prev = head->prev;
+		head->prev->next = curr;
+		head->prev = curr;
+	}
+
 	size++;
 }
 
 void LinkedList::Remove(int& no)
 {
-	if (size == 0)
+	curr = head;
+	do
 	{
-		cout << "리스트가 비어있습니다!" << endl;
-	}
-	else
-	{
-		Node* prev;
-		prev = head;
-		curr = head;
-		while (curr != tail->next)
+		if (curr->no == no)
 		{
-			if (curr->no == no)
+			if (curr == head)
 			{
-				if (curr == head)
-				{
-					head = curr->next;
-				}
-				else if (curr == tail)
-				{
-					tail = prev;
-					prev->next = NULL;
-				}
-				else
-				{
-					prev->next = curr->next;
-				}
-				delete curr;
-				size--;
-				cout << no << "번을 삭제했습니다!\n";
-				return;
+				head->prev->next = curr->next;
+				head = curr->next;
+				head->prev = curr->prev;
+			}
+			else if (curr == head->prev)
+			{
+				head->prev = curr->prev;
+				curr->prev->next = head;
 			}
 			else
 			{
-				prev = curr;
-				curr = curr->next;
+				curr->prev->next = curr->next;
+				curr->next->prev = curr->prev;
 			}
+			delete curr;
+			size--;
+			cout << no << "번을 삭제했습니다!\n";
+			return;
 		}
-		cout << no << "번은 존재하지 않습니다!\n";
-	}
+		else
+		{
+			curr = curr->next;
+		}
+	} while (curr != head);
+	cout << no << "번은 존재하지 않습니다!\n";
 }
 
 void LinkedList::Print()
 {
-	if (size == 0)
+	curr = head;
+	do
 	{
-		cout << "리스트가 비어있습니다!" << endl;
-	}
-	else
+		cout << "번호: " << curr->no << ", 이름: " << curr->name << endl;
+		curr = curr->next;
+	} while (curr != head);
+}
+
+void LinkedList::PrintReverse()
+{
+	curr = head->prev;
+	do
 	{
-		curr = head;
-		while (curr != tail->next)
-		{
-			cout << "번호: " << curr->no << ", 이름: " << curr->name << endl;
-			curr = curr->next;
-		}
-	}
+		cout << "번호: " << curr->no << ", 이름: " << curr->name << endl;
+		curr = curr->prev;
+	} while (curr != head->prev);
 }
