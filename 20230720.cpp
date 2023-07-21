@@ -58,7 +58,7 @@ int main()
 				else
 					cout << no << "번은 존재하지 않습니다!\n";
 			}
-			else if(pick == (int)MENU::PRINT)
+			else if (pick == (int)MENU::PRINT)
 			{
 				cout << "[모든 노드 출력]\n";
 				bt.Print(bt.GetRoot());

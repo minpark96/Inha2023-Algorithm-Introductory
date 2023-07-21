@@ -68,76 +68,78 @@ void BinTree::Insert(const Data& da)
 bool BinTree::Remove(int x)
 {
 	Node* parent = nullptr;
-	bool isLeft = true; // true : 부모의 왼쪽 자식, false : 부모의 오른쪽 자식
-	curr = root;
-	Node* tmp = Search(x);
-	if (tmp == nullptr) return false;
-	else
-	{
-		parent = PickParent(tmp);
-		// 찾았다!
-		if (curr->leftChild != nullptr && curr->rightChild != nullptr)
-		{
-			// 자식 두개
-			Node* max = PickLargest(curr->leftChild);
-			if (max != curr->leftChild)
-				max->leftChild = curr->leftChild;
-			max->rightChild = curr->rightChild;
+	curr = Search(x);
+	if (curr == nullptr) return false;
 
-			if (parent != nullptr)
-			{
-				if (isLeft)
-					parent->leftChild = max;
-				else
-					parent->rightChild = max;
-			}
-			else
-			{
-				root = max;
-			}
-		}
-		else if (curr->leftChild != nullptr)
+	parent = PickParent(curr);
+
+	// 찾았다!
+	if (curr->leftChild != nullptr && curr->rightChild != nullptr)
+	{
+		// 자식 두개
+		Node* max = PickLargest(curr->leftChild);
+		if (max != curr->leftChild)
+			max->leftChild = curr->leftChild;
+		max->rightChild = curr->rightChild;
+
+		if (parent != nullptr)
 		{
-			// 왼쪽 자식 한개
-			if (parent != nullptr)
-			{
-				if (isLeft)
-					parent->leftChild = curr->leftChild;
-				else
-					parent->rightChild = curr->leftChild;
-			}
+			if (parent->leftChild == curr)
+				parent->leftChild = max;
 			else
-			{
-				root = curr->leftChild;
-			}
-		}
-		else if (curr->rightChild != nullptr)
-		{
-			// 오른쪽 자식 한개
-			if (parent != nullptr)
-			{
-				if (isLeft)
-					parent->leftChild = curr->rightChild;
-				else
-					parent->rightChild = curr->rightChild;
-			}
-			else
-			{
-				root = curr->rightChild;
-			}
+				parent->rightChild = max;
 		}
 		else
 		{
-			// 자식 없음
-			if (parent != nullptr)
-			{
-				if (isLeft)
-					parent->leftChild = nullptr;
-				else
-					parent->rightChild = nullptr;
-			}
+			root = max;
 		}
 	}
+	else if (curr->leftChild != nullptr)
+	{
+		// 왼쪽 자식 한개
+		if (parent != nullptr)
+		{
+			if (parent->leftChild == curr)
+				parent->leftChild = curr->leftChild;
+			else
+				parent->rightChild = curr->leftChild;
+		}
+		else
+		{
+			root = curr->leftChild;
+		}
+	}
+	else if (curr->rightChild != nullptr)
+	{
+		// 오른쪽 자식 한개
+		if (parent != nullptr)
+		{
+			if (parent->leftChild == curr)
+				parent->leftChild = curr->rightChild;
+			else
+				parent->rightChild = curr->rightChild;
+		}
+		else
+		{
+			root = curr->rightChild;
+		}
+	}
+	else
+	{
+		// 자식 없음
+		if (parent != nullptr)
+		{
+			if (parent->leftChild == curr)
+				parent->leftChild = nullptr;
+			else
+				parent->rightChild = nullptr;
+		}
+		else
+		{
+			root = nullptr;
+		}
+	}
+	
 	delete curr;
 	return true;
 }
