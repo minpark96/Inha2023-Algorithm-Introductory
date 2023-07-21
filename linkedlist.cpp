@@ -34,9 +34,9 @@ int LinkedList::Size()
 	return size;
 }
 
-void LinkedList::InsertFront(int& no, string& name)
+void LinkedList::InsertFront(const Data da)
 {
-	curr = new Node{ no, name };
+	curr = new Node{ da };
 
 	if (size == 0)
 	{
@@ -56,9 +56,9 @@ void LinkedList::InsertFront(int& no, string& name)
 	size++;
 }
 
-void LinkedList::InsertRear(int& no, string& name)
+void LinkedList::InsertRear(const Data da)
 {
-	curr = new Node{ no, name };
+	curr = new Node{ da };
 
 	if (size == 0)
 	{
@@ -82,7 +82,7 @@ void LinkedList::Remove(int& no)
 	curr = head;
 	do
 	{
-		if (curr->no == no)
+		if (curr->data.no == no)
 		{
 			if (curr == head)
 			{
@@ -110,7 +110,42 @@ void LinkedList::Remove(int& no)
 			curr = curr->next;
 		}
 	} while (curr != head);
-	cout << no << "번은 존재하지 않습니다!\n";
+}
+
+void LinkedList::RemoveAll()
+{
+	Node* tmp;
+	tmp = head;
+	curr = head;
+	while (size > 0)
+	{
+		tmp = curr->next;
+		delete curr;
+		curr = tmp;
+		size--;
+	}
+
+	//head = nullptr;
+	//curr = nullptr;
+}
+
+void LinkedList::Search(int& no)
+{
+	curr = head;
+	do
+	{
+		if (curr->data.no == no)
+		{
+			cout << "검색에 성공했습니다: " << curr->data.no << ' ' << curr->data.name << "\n";
+			return;
+		}
+		else
+		{
+			curr = curr->next;
+		}
+	} while (curr != head);
+
+	cout << "검색에 실패했습니다!\n";
 }
 
 void LinkedList::Print()
@@ -118,7 +153,7 @@ void LinkedList::Print()
 	curr = head;
 	do
 	{
-		cout << "번호: " << curr->no << ", 이름: " << curr->name << endl;
+		cout << "→ " << curr->data.no << '(' << curr->data.name << ") ";
 		curr = curr->next;
 	} while (curr != head);
 }
@@ -128,7 +163,7 @@ void LinkedList::PrintReverse()
 	curr = head->prev;
 	do
 	{
-		cout << "번호: " << curr->no << ", 이름: " << curr->name << endl;
+		cout << "번호: " << curr->data.no << ", 이름: " << curr->data.name << endl;
 		curr = curr->prev;
 	} while (curr != head->prev);
 }

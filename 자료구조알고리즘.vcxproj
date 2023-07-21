@@ -237,8 +237,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="20230720.cpp" />
+    <ClCompile Include="20230720.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="20230721.cpp" />
     <ClCompile Include="BinTree.cpp" />
+    <ClCompile Include="ChainHash.cpp" />
     <ClCompile Include="int_stack.cpp" />
     <ClCompile Include="int_stack.h" />
     <ClCompile Include="linkedlist.cpp" />
@@ -248,6 +253,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinTree.h" />
+    <ClInclude Include="ChainHash.h" />
     <ClInclude Include="linkedlist.h" />
     <ClInclude Include="queue.h" />
     <ClInclude Include="stopwatch.h" />
